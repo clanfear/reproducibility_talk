@@ -29,11 +29,17 @@ source("./csss508css.R")
 
 ### Reproducible Research
 
+   * What is Reproducibility?
+   * Dynamic Documents
+   * Research Compendia
+
 ### Best Practices
 
    * Organization
    * Portability
+   * Tools
    * Version Control
+   
 ---
 class: inverse
 
