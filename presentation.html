@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>Research Practices</title>
+    <title>Reproducibility</title>
     <meta charset="utf-8" />
     <meta name="author" content="Chuck Lanfear" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -10,8 +10,8 @@
     <textarea id="source">
 class: center, top, title-slide
 
-# Research Practices
-## Organization, Tools, and Reproducibility
+# Reproducibility
+## Organization, Tools, and Best Practices
 ### Chuck Lanfear
 ### May 31, 2019<br>Updated: May 30, 2019
 
@@ -79,13 +79,11 @@ Reproducibility comes in three forms (Stodden 2014):
 
 --
 
-R is particularly well suited to enabling **computational reproducibility**.&lt;sup&gt;1&lt;/sup&gt;
-
-.footnote[[1] Python is equally well suited.]
+R and Python particularly well suited to enabling **computational reproducibility**.&lt;sup&gt;1&lt;/sup&gt;
 
 --
 
-They will not fix flawed research design, nor offer a remedy for improper application of statistical methods.
+Reproducible research methods will not fix flawed research design, nor offer a remedy for improper application of statistical methods.
 
 Those are the difficult, non-automatable things you want skills in.
 
@@ -103,12 +101,12 @@ Elements of computational reproducibility:
 
 --
 
-* Shared code
+* **Shared code**
    + Your code must be shared to make decisions transparent.
 
 --
 
-* Documentation
+* **Documentation**
    + The operation of code should be either self-documenting or have written descriptions to make its use clear.
 
 --
@@ -135,7 +133,7 @@ For academic papers, degrees of reproducibility vary:
 
 --
 
-3. **Interactive document**
+3. **Dynamic Document**
 
 --
 
@@ -143,12 +141,12 @@ For academic papers, degrees of reproducibility vary:
 
 --
 
-5. Docker compendium: Self-contained ecosystem
+5. Self-contained ecosystem
 
 ---
-## Interactive Documents
+## Dynamic Documents
 
-**Interactive documents**—like R Markdown docs—combine code and text together into a self-contained document.
+**Dynamic Documents**—like R Markdown docs—combine code and text together into a self-contained document.
    * Load and process data
    * Run models
    * Generate tables and plots in-line with text
@@ -156,7 +154,7 @@ For academic papers, degrees of reproducibility vary:
 
 --
 
-Interactive documents allow a reader to examine your computational methods within the document itself; in effect, they are self-documenting.
+Dynamic documents allow a reader to examine your computational methods within the document itself; in effect, they are self-documenting.
 
 --
 
@@ -168,6 +166,58 @@ Common Platforms:
 
  * **R:** R Markdown ([an example of mine](https://clanfear.github.io/birthtiming/inst/paper/paper.html))
  * **Python:** Jupyter Notebooks
+ * Stata 15 introduced a primitive version: `dyndoc`
+
+---
+## R Markdown Documents
+
+A killer feature of R/RStudio is ease of making R Markdown files:
+--
+
+* Document analysis as you go with integrated text, code, and output
+
+--
+
+  + No rerunning, recopying, or repasting *ever again*
+--
+
+  + Easy for collaborators to understand
+--
+
+  + Show as little or as much of the code as you want
+  
+--
+
+* Produce many different document types as output
+
+--
+
+  + PDF documents
+  + HTML webpages and reports
+  + Word and PowerPoint documents  
+  + Presentations (like these slides)
+
+--
+
+* Works with LaTeX for math and more formatting control
+
+---
+
+# This is Amazing!
+
+Having R insert values, plots, and tables directly into your document protects you from mistakes and reduces wasted effort:
+
+--
+
+* Never wonder "how did I come up with this quantity?" ever again: Just look at your formula in your R Markdown file!
+
+--
+
+* Consistency! No "find/replace" mishaps: reference a variable in-line throughout your document without manually updating if the calculation changes (e.g. reporting sample sizes).
+
+--
+
+* You are more likely to make a typo in a "hard-coded" number than you are to write R code that somehow runs but gives you the wrong thing.
 
 ---
 ## Research Compendia
@@ -178,9 +228,9 @@ A **research compendium** is a portable, reproducible distribution of an article
 
 Research compendia feature:
 
-* An interactive document as the foundation
+* A dynamic document as the foundation
 
-* Files organized in a recognizable structure (e.g. an R package)
+* Files organized in a recognizable structure (e.g. an R or Python package)
 
 * Clear separation of data, method, and output. *Data are read only*.
 
@@ -195,7 +245,7 @@ Research compendia feature:
 ---
 ## Bookdown
 
-[`bookdown`](https://bookdown.org/yihui/bookdown/)—which is integrated into `rrtools`—can generate documents in the proper format for articles, theses, books, or dissertations.
+[`bookdown`](https://bookdown.org/yihui/bookdown/) for R—which is integrated into `rrtools`—can generate documents in the proper format for articles, theses, books, or dissertations.
 
 --
 
@@ -306,12 +356,12 @@ For research to be reproducible, it must also be *portable*. Portable software o
 
 --
 
-**Do Not:**
+**Do Not (in R):**
 
-* Use `setwd()` in scripts or .Rmd files.
+* Use `setwd()` in scripts or `.Rmd` files.
 * Use *absolute paths* except for *fixed, immovable sources* (secure data).
   + `read_csv("C:/my_project/data/my_data.csv")`
-* Use `install.packages()` in script or .Rmd files.
+* Use `install.packages()` in script or `.Rmd` files.
 * Use `rm(list=ls())` anywhere but your console.
 
 --
@@ -328,7 +378,7 @@ For research to be reproducible, it must also be *portable*. Portable software o
 ---
 # Divide and Conquer
 
-Often you do not want to include all the code for a project in a single `.Rmd` file:
+Often you do not want to include all the code for a project in a single `.Rmd` (or similar) file:
 
    * The code takes too long to knit.
    * The file is so long it is difficult to read.
@@ -337,14 +387,14 @@ Often you do not want to include all the code for a project in a single `.Rmd` f
 
 There are two ways to deal with this:
 
-1. Use separate `.R` scripts or `.Rmd` files which save results from complicated parts of a project, then load these results in the main `.Rmd` file.
+1. Use separate scripts or dynamic documents which save results from complicated parts of a project, then load these results in the main file.
 
    + This is good for loading and cleaning large data.
    + Also for running slow models.
 
 --
 
-2. Use `source()` to run external `.R` scripts.
+2. Run external scripts (e.g. with `source()`).
 
    + This can be used to run large files that aren't impractically slow.
    + Also good for loading project-specific functions.
@@ -356,7 +406,7 @@ I find it beneficial to break projects into *many* files:
    * Scripts with specialized functions.
    * Scripts to load and clean each set of variables.
    * Scripts to run each set of models and make tables and plots.
-   * A main .Rmd that runs some or all of these to reproduce the entire project.
+   * A main `.Rmd` that runs some or all of these to reproduce the entire project.
 
 --
 
