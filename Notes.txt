@@ -1,0 +1,14 @@
+"[The audience is] PhD students of mostly 1 and 2 years who need a guidance about the life of PhD"
+
+"Could you briefly share your knowledge to guide us so that we can broad our perspectives in the research in terms of quantitative and data driven way?"
+
+"[Share your] knowledge or experience in data analytics or the related research methodologies"
+
+Given the above I am going to focus on general advice and things to refer them to rather than anything specific or overly technical. That is, I'll introduce a holistic approach to research design and project management which links into reproducible research. I'll talk about some tools related to this (R, RMarkdown, Python, Jupyter Notebooks), and general practices.
+
+Things to talk about:
+ 1) Get reproducibility stuff from birthtiming presentation
+ 2) Talk about folder structures
+ 3) Non-destructive practices
+ 4) Version control
+ 5) Open formats

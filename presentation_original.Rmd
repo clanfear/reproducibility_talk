@@ -1,0 +1,505 @@
+---
+title: "Research Practices"
+subtitle: "Organization, Tools, and Reproducibility"
+author: "Chuck Lanfear"
+date: 'Oct 25, 2018'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+csss508css <- list(
+     ".hljs-tomorrow-night-bright .hljs" = list(
+        "background" = "#10102c",
+        "border-radius"="5px"),
+     ".remark-inline-code" = list(
+        "background" = "#E0E0E0",
+        "color" = "#10102c",
+        "border-radius" = "3px",
+        "padding" = "2px"),
+     ".inverse .remark-inline-code" = list(
+        "background" = "#10102c",
+        "color" = "#ececf8",
+        "border-radius" = "3px",
+        "padding" = "2px"),
+     ".small" = list("font-size" = "75%"),
+     ".smallish" = list("font-size" = "85%"),
+     ".remark-code-line-highlighted" = list(
+        "background-color" = "rgba(255,0,255,0.2)"),
+     "sup" = list("font-size" = "14px"),
+     "h1, h2, h3" = list(
+        "margin-top"=".25em", 
+        "margin-bottom"=".25em"),
+     ".title-slide h1" = list(
+       "margin-top" = "-180px"
+     ),
+     ".pull-left60" = list(
+        "float" = "left",
+        "width" = "58%" ),
+     ".pull-right40" = list(
+        "float" = "right",
+        "width" = "38%" ),
+     ".pull-right30" = list(
+        "float" = "right",
+        "width" = "30%" ),
+     "a" = list("text-decoration" = "underline"),
+     ".inverse a" = list("color" = "#cbd3a3"),
+     "body" = list("line-height" = "1.4"),
+     ".inverse" = list("background-image" = "url(https://clanfear.github.io/BE_102518/img/UWSocBG1_white.svg)"),
+     ".centernote" = list(
+        "text-align" = "center",
+        "position" = "fixed",
+        "left" = "0",
+        "right" = "0",
+        "margin" = "0 auto",
+        "padding-left" = "100px",
+        "padding-right" = "100px",
+        "bottom" = "3em"),
+     ".image-50 img" = list(
+        "width" = "50%",
+        "display"="block",
+        "margin-left"="auto",
+        "margin-right"="auto"),
+     ".image-75 img" = list(
+        "width" = "75%",
+        "display"="block",
+        "margin-left"="auto",
+        "margin-right"="auto"),
+     ".image-full img" = list(
+        "height" = "480px",
+        "display"="block",
+        "margin-left"="auto",
+        "margin-right"="auto"),
+     ".image-center img" = list(
+        "display"="block",
+        "margin-left"="auto",
+        "margin-right"="auto"),
+     ".center table" = list("display" = "inline-block"),
+     ".title-slide" = list("background-image" = "url(https://clanfear.github.io/BE_102518/img/UWSocBG1_white.svg), url(https://clanfear.github.io/SocSem_102618/img/title_slide_img.png)",
+                           "background-position" = "center center, center bottom",
+                           "background-size" = "contain, contain"),
+     ".remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even)" = list("background" = "#FFFFFF"),
+     ".remark-slide table th" = list("border-bottom" = "1px solid #000",
+                                     "border-top" = "4px double #000",
+                                     "text-align" = "center",
+                                     "font-weight" = "normal",
+                                     "font-style" ="italic"),
+     ".remark-slide table" = list("border-top" = "none",
+                                  "border-bottom" = "1px solid #000",
+                                  "border-collapse" = "collapse"),
+     ".remark-slide table tr" = list(
+       "line-height" = "20px"
+     ),
+     ".remark-slide table td" = list(
+       "padding" = "2px",
+       "text-align" = "center"
+     ),
+     "strong" = list("color" = "#905145"),
+     ".table-title" = list("font-size" = "115%")
+    )
+mono_accent(base_color = "#342c5c",
+            code_font_google = google_font("Fira Mono"),
+            header_font_google = google_font("Quattrocento"),
+            extra_css = csss508css,
+            background_image = "https://clanfear.github.io/BE_102518/img/UWSocBG1.svg"
+)
+```
+
+# Overview
+
+### 1. Organization
+### 2. Tools and Skills
+### 3. Reproducible Research
+### 4. Version Control
+
+---
+class: inverse
+# Organization
+
+---
+# A System
+
+Developing an organization system for research is something you either do accidentally—and badly—or purposefully with some upfront labor.
+
+--
+
+Every paper, project, or presentation should be organized the same way.
+
+--
+
+I suggest something like the following (an R example):
+
+.pull-left[
+```
+project/
+   readme.md
+   data/
+     derived/
+       processed_data.RData
+     raw/
+       core_data.csv
+   docs/
+     paper.Rmd
+   scripts/
+     functions.R
+     models.R
+```
+]
+.pull-right[
+1. There is a clear hierarchy
+   * Written content is in `docs`
+   * Code is in `scripts`
+   * Data is in `data`
+2. Naming is uniform
+   * All lower case
+   * Words separated by underscores
+3. Names are self-descriptive
+
+]
+
+---
+class: inverse
+# Tools
+
+---
+# On Formats
+
+Avoid "closed" or commercial software and file formats except where absolutely necessary.
+
+--
+
+Use open source software and file formats.
+
+--
+
+* It is always better for *science*:
+
+   + People should be able to explore your research without buying commercial software.
+   + You do not want your research to be inaccessible when software is updated.
+
+--
+
+* It is often just *better*.
+
+   + It is usually updated more quickly
+   + It tends to be more secure
+   + It is rarely abandoned
+
+--
+
+**The ideal:** Use software that reads and writes *raw text*.
+
+---
+# Programming
+
+Learn to program.
+
+--
+
+Coding is a universal, transferrable, and marketable skill.
+
+--
+
+People are bad at repetitive tasks, but computers are very good.
+
+--
+
+Programming is telling a computer how to do repetitive tasks for you.
+
+--
+
+If what you do can be automated easily, it is not a useful skill—*but knowing how to automate it is*.
+
+--
+
+Most research labor is easily automated, *but people do it manually anyway.*
+
+**Stop.**
+
+---
+# R or Python
+
+R and Python dominate the general sphere of scientific computing.
+
+--
+
+.pull-left[
+### R
+
+* Older, more idiosyncratic
+* Dominant in academia
+* Best tools for inference
+* Superior document authoring
+]
+
+--
+
+.pull-right[
+### Python
+
+* Newer with simpler syntax
+* Dominant in industry
+* Best tools for prediction
+* Easiest to deploy at scale
+]
+
+--
+
+*There is nothing one can do that the other can't<sup>1</sup> and they are comparable in performance<sup>2</sup>, so learn one well and branch out later*
+
+.footnote[
+[1] Though it may be *harder*!
+
+[2] If you write code correctly.
+]
+
+---
+# Getting Started
+
+Setting up and using a programming environment for the first time can be daunting. I recommend using common platforms for either.
+
+--
+
+.pull-left[
+### R
+
+1. [Get R](https://cran.r-project.org/)
+2. [Get RStudio](https://www.rstudio.com/products/rstudio/download/#download)
+3. Find a tutorial
+   * I like [DataCamp](https://www.datacamp.com/)
+   * [swirl](https://swirlstats.com/) is great too
+4. Take a class
+   * [I like mine, I teach it](https://clanfear.github.io/CSSS508/)
+
+]
+
+--
+
+.pull-right[
+### Python
+
+1. [Get Python 3](https://www.python.org/downloads/)
+2. Get an Integrated Development Environment (IDE) <sup>1</sup>
+   * [I use Atom](https://atom.io/)<sup>2</sup>
+   * [PyCharm is good too](https://www.jetbrains.com/pycharm/)
+3. Find a tutorial
+   * I like [DataCamp](https://www.datacamp.com/)
+4. Take a class
+   * CSE583 is great
+]
+
+.footnote[
+[1] [Jupyter Notebooks are kind of an IDE](http://jupyter.org/)
+
+[2] Atom is an excellent *general text editor*. I use it for *everything*.
+]
+---
+# Text
+
+Writing and formatting documents are two completely separate jobs.
+   * Write first
+   * Format later
+   * [Markdown](https://en.wikipedia.org/wiki/Markdown) was made for this
+
+--
+
+Word processors—like Microsoft Word—try to do both at the same time, usually badly.
+
+They waste time by leading you to format instead of writing.
+
+--
+
+Find a good modular text editor and learn to use it:
+   * [Atom](https://atom.io/)
+   * [Sublime](https://www.sublimetext.com/) (Commercial)
+   * Vim<sup>1</sup>
+   * Emacs<sup>1</sup>
+
+.footnote[[1] These are powerful but complex. RStudio has a Vim mode too.]
+
+---
+class: inverse
+
+# Reproducible Research
+
+---
+## Reproducibility Definitions
+
+Reproducibility comes in three forms (Stodden 2014):
+
+--
+
+1. **Empirical:** Repeatability in data collection.
+
+--
+
+2. **Statistical:** Verification with alternate methods of inference.
+
+--
+
+3. **Computational:** Reproducibility in cleaning, organizing, and presenting data and results.
+
+--
+
+R and Python are particularly well suited to enabling **computational reproducibility**.
+
+--
+
+They will not fix flawed experimental methods or observations, nor offer a remedy for improper application of statistical methods.
+
+Those are the difficult, non-repetitive things you want skills in.
+
+---
+
+## Computational Reproducibility
+
+Elements of computational reproducibility:
+* Shared data
+* Shared code
+* Documentation
+* **Version Control**
+
+---
+
+## Levels of Reproducibility
+
+For academic papers, degrees of reproducibility vary:
+
+0. "Read the article"
+--
+
+1. Shared data with documentation
+--
+
+2. Shared data and all code
+--
+
+3. **Interactive document**
+--
+
+4. **Research compendium**
+--
+
+5. Docker File: Self-contained ecosystem
+
+---
+## Interactive Documents
+
+Interactive documents combine code and text together
+   * Loading and process data
+   * Run models
+   * Generate tables and plots in-line with text
+   * In-text values automatically filled in
+
+--
+
+Interactive documents allow a reader to examine your computational methods within the document itself.
+
+--
+
+By re-running the code, they reproduce your results on demand.
+
+--
+
+Platforms:
+ * **R:** RMarkdown ([an example of mine](https://clanfear.github.io/birthtiming/inst/paper/paper.html))
+ * **Python:** Jupyter Notebooks
+
+---
+## Research Compendia
+
+A research compendium is an R package used not to share statistical or computational *methods* but to organize and share reproducible *projects*.
+
+--
+
+Research compendia feature:
+
+* Files organized in a recognizable structure (R packages)
+* Clear separation of data, method, and output. *Data are read only*.
+* A well-documented or even *preserved* computational environment
+
+`rrtools` by UW's Ben Markwick provides a simplified workflow to accomplish this in R.
+
+---
+## Bookdown
+
+If using your compendium to generate an article, thesis, or dissertation, `rrtools` makes formatting simple by integrating `bookdown`.
+
+`bookdown` provides an accessible alternative to manually writing $\LaTeX$ for typesetting and reference management.
+
+You can integrate citations and automate reference page generation using bibtex files (such as produced by Zotero).
+
+`bookdown` supports `.html` output for ease and speed and also renders `.pdf` files through $\LaTeX$ for publication-ready documents.
+
+For University of Washington theses and dissertations, consider Ben Marwick's `huskydown` package which uses Markdown but renders via a UW approved $\LaTeX$ template.
+
+---
+# Version Control
+
+Version control originates in collaborative software development.
+
+**The Idea:** All changes ever made to a piece of software are documented, saved automatically, and revertible.
+
+--
+
+Version control allows all decisions ever made in a research project to be documented automatically.
+
+--
+
+Version control can:
+
+1. Protect your work from destructive changes
+2. Simplify collaboration by merging changes
+3. Document design decisions
+4. Make your research process transparent
+
+---
+# Git and GitHub
+
+[Git](https://en.wikipedia.org/wiki/Git) is the dominant platform for version control, and [GitHub](https://github.com/) is a (now Microsoft owned) platform for hosting **repositories**.
+
+--
+
+Repositories are folders on your computer where all changes are tracked by Git.
+
+--
+
+Once satisfied with changes, you "commit" them then "push" them to a remote repository that stores your project.
+
+--
+
+Others can copy your project ("pull"), and if you permit, make suggestions for changes.
+
+--
+
+Constantly committing and pulling changes automatically generates a running "history" that documents the evolution of a project.
+
+---
+# Summary
+
+Good research hygiene is good for science
+
+* Spend labor up-front to reduce headaches later on
+
+* Learn to program
+
+   * Replace boring things with automation
+   * Spend your time on hard problems instead
+
+* Do good science
+
+   * Reproducible
+   * Accessible
+   * Transparent
