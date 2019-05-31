@@ -13,7 +13,7 @@ class: center, top, title-slide
 # Reproducibility
 ## Organization, Tools, and Best Practices
 ### Chuck Lanfear
-### May 31, 2019<br>Updated: May 30, 2019
+### May 31, 2019<br>Updated: May 31, 2019
 
 ---
 
@@ -225,6 +225,33 @@ Having R insert values, plots, and tables directly into your document protects y
 
 * You are more likely to make a typo in a "hard-coded" number than you are to write R code that somehow runs but gives you the wrong thing.
 
+--
+
+Reproducible tools like R Markdown make your work easier for you and more accessible for others. 
+
+*Good for you, good for science.*
+
+---
+## `bookdown`
+
+[`bookdown`](https://bookdown.org/yihui/bookdown/) uses R Markdown to generate documents in the proper format for articles, theses, books, or dissertations.
+
+--
+
+`bookdown` provides an accessible alternative to writing `\(\LaTeX\)` for typesetting and reference management.
+
+--
+
+You can integrate citations and automate reference page generation using bibtex files (such as produced by Zotero).
+
+--
+
+`bookdown` supports `.html` output for ease and speed and also renders `.pdf` files through `\(\LaTeX\)` for publication-ready documents.
+
+--
+
+For University of Washington theses and dissertations, consider Ben Marwick's [`huskydown` package](https://github.com/benmarwick/huskydown) which uses Markdown but renders via a UW approved `\(\LaTeX\)` template.
+
 ---
 ## Research Compendia
 
@@ -247,27 +274,6 @@ Research compendia feature:
 `rrtools` by UW's [Ben Markwick](https://github.com/benmarwick) provides a simplified workflow to accomplish this in R.
 
 [Here is an example compendium of mine.](https://github.com/clanfear/birthtiming)
-
----
-## Bookdown
-
-[`bookdown`](https://bookdown.org/yihui/bookdown/) for R—which is integrated into `rrtools`—can generate documents in the proper format for articles, theses, books, or dissertations.
-
---
-
-`bookdown` provides an accessible alternative to writing `\(\LaTeX\)` for typesetting and reference management.
-
---
-
-You can integrate citations and automate reference page generation using bibtex files (such as produced by Zotero).
-
---
-
-`bookdown` supports `.html` output for ease and speed and also renders `.pdf` files through `\(\LaTeX\)` for publication-ready documents.
-
---
-
-For University of Washington theses and dissertations, consider Ben Marwick's [`huskydown` package](https://github.com/benmarwick/huskydown) which uses Markdown but renders via a UW approved `\(\LaTeX\)` template.
 
 ---
 class: inverse
@@ -429,13 +435,13 @@ Professional researchers and teams design projects as a **pipeline**.
 
 --
 
-A **pipeline** is a series of consecutive processing elements (scripts and functions in R).
+A **pipeline** is a series of consecutive processing elements (scripts and functions in R or Python).
 
 --
 
 Each stage of a pipeline...
 
-1. Has clearly defined inputs and outputs
+1. Has clearly defined inputs and outputs.
 2. Does not modify its inputs.
 3. Produces the exact same output every time it is re-run.
 
@@ -480,15 +486,15 @@ Use open source software and file formats.
 
 --
 
-* It is often just *better*.
+* It is often just *better*:
 
-   + It is usually updated more quickly
-   + It tends to be more secure
-   + It is rarely abandoned
+   + It is usually updated more quickly.
+   + It tends to be more secure.
+   + It is rarely abandoned.
 
 --
 
-**The ideal:** Use software that reads and writes *raw text*.
+**The ideal:** [Use software that reads and writes *raw text*.](http://plain-text.co/)
 
 ---
 # Text
@@ -582,7 +588,7 @@ If you are planning on working in the private sector, an active GitHub profile w
 If you are aiming for academia, a GitHub account signals technical competence and an interest in research transparency.
 
 ---
-# Summary
+# Parting Advice
 
 Good research hygiene is good for science
 
